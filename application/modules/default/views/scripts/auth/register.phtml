@@ -1,0 +1,16 @@
+<script language="javascript">
+    $(function(){
+        $("#pressMeArrow").click(function(e){
+            $("#newsletter form").submit();
+            e.preventDefault();
+        });
+<?php if ($this->registered) : ?>
+        alert("Twoje konto zostało dodane\nMożesz się zalogować");
+        window.location='" . <?php echo $this->url(array("action" => "login", "controller" => "auth"), null, true); ?> . "';
+<?php endif; ?>
+    });
+</script>
+
+<?php if (isset($this->oRegisterForm)) : ?>
+<?php echo $this->oRegisterForm; ?>
+<?php endif; ?>

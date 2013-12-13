@@ -1,0 +1,62 @@
+<?php
+$this->headLink()->appendStylesheet('/css/960.css');
+$this->headLink()->appendStylesheet('/css/reset.css');
+$this->headLink()->appendStylesheet('/css/ui-lightness/jquery-ui-1.8.7.custom.css');
+$this->headLink()->appendStylesheet('/css/style.css');
+$this->headScript()->offsetSetFile(-1000, '/js/jquery-1.4.4.min.js');
+$this->headScript()->offsetSetFile(-900, '/js/jquery-ui-1.8.6.custom.min.js');
+$this->headScript()->offsetSetFile(-1, '/js/script.js');
+?>
+
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+        <!--
+
+        Tak,wiem, że można było lepiej, ale to wersja beta i mi się natenczas nie chciało :)
+
+        -->
+
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headLink() ?>
+        <?php echo $this->headStyle() ?>
+        <?php echo $this->headScript() ?>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-6294686-6']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+    <body>
+<? /*
+        <div class="container_16" style="text-align: right; font-size: 12px">
+             polski &harr; <a href="#">portuguese</a>
+        </div>
+ *
+ */ ?>
+        <div class="container_16" style="margin-top: 40px">
+            <div class="grid_3 prefix_4"><a href="<?php echo $this->baseUrl(); ?>"><img src="/images/portek.jpg" alt="Portuga.pl" style="float: left; margin: 10px; border: 0"/></a></div>
+            <div class="grid_5" style="padding-top: 40px"><h1 style="font-size: 50px; font-family: Arial, sans-serif;"><a href="<?php echo $this->baseUrl(); ?>" style="text-decoration: none; color: black">Portuga.pl</a></h1><span style="color:red; font-size: 10px">beta</span></div>
+        </div>
+        <div class="clear"></div>
+
+        <?php echo $this->layout()->content; ?>
+
+        <div class="clear"></div>
+
+        <div id="footer">
+            <a href="/index/about">Informacja</a>
+            <a href="mailto:kontakt@portuga.pl" target="_blank">kontakt@portuga.pl</a>
+            <a href="http://www.capoeiraolsztyn.pl" target="_blank">Capoeira Camangula Olsztyn</a>
+            <a href="http://www.uirapuru.pl" target="_blank">uirapuru.pl</a>
+        </div>
+    </body>
+</html>

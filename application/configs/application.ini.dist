@@ -1,0 +1,103 @@
+[production]
+phpSettings.display_startup_errors = 0
+phpSettings.display_errors = 0
+includePaths.library = APPLICATION_PATH "/../library"
+bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+appnamespace = "Application"
+dateformat = "d.m.Y"
+
+caching = true
+
+auth.expirationSeconds = 3600;
+
+log.active = true
+
+debug = false
+
+; frontController
+
+resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+resources.frontController.moduleControllerDirectoryName = "controllers"
+resources.frontController.moduleDirectory = APPLICATION_PATH "/modules"
+resources.frontController.defaultControllerName = "index"
+resources.frontController.defaultAction = "index"
+resources.frontController.defaultModule = "default"
+resources.frontController.env = APPLICATION_ENV
+resources.frontController.params.displayExceptions = 1
+resources.frontController.params.prefixDefaultModule = "1"
+resources.frontController.baseUrl = "http://portuga.uirapuru.vot.pl"
+
+; layout
+
+resources.layout.layout = "default"
+resources.layout.layoutPath = APPLICATION_PATH "/layouts/html"
+
+; view
+resources.view.doctype = "HTML5"
+resources.view.contentType = "text/html; charset=UTF-8"
+resources.view.encoding = "UTF-8"
+resources.view.title = "Portuga.pl - słownik polsko-portugalski, portugalsko-polski"
+resources.view.BasePath = APPLICATION_PATH "/modules/default/views/scripts"
+resources.view.ScriptPath = APPLICATION_PATH "/modules/default/views/scripts"
+resources.view.helperPath = APPLICATION_PATH "/../library/helpers"
+; Database
+
+resources.db.active = false
+resources.db.adapter = "mysqli"
+resources.db.isdefaulttableadapter = true
+resources.db.params.dbname = ""
+resources.db.params.username = ""
+resources.db.params.password = ""
+resources.db.params.host = "localhost"
+resources.db.params.port = "3306"
+resources.db.params.charset = "UTF8"
+resources.db.params.driver_options.1002 = "SET NAMES UTF8;"
+
+resources.mail.transport.type = smtp
+resources.mail.transport.host = ""
+resources.mail.transport.auth = login
+resources.mail.transport.username = 
+resources.mail.transport.password = 
+resources.mail.transport.register = true ; True by default
+resources.mail.defaultFrom.email = 
+resources.mail.defaultFrom.name = "Webmaster strony internetowej"
+resources.mail.defaultReplyTo.email = 
+resources.mail.defaultReplyTo.name = "Webmaster strony internetowej"
+
+; modules
+
+resources.modules[] =
+
+upload.image.dir = APPLICATION_PATH "../public_html/images/"
+
+[development : production]
+
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+
+caching = false
+log.active = true
+debug = true
+
+auth.expirationSeconds = 3600*24*7;
+
+resources.frontController.baseUrl = "http://portuga.local"
+
+resources.db.active = true
+resources.db.adapter = "mysqli"
+resources.db.isdefaulttableadapter = true
+resources.db.params.dbname = ""
+resources.db.params.username = "" 
+resources.db.params.password = ""
+resources.db.params.host = "localhost"
+resources.db.params.port = "3306"
+resources.db.params.charset = "UTF8"
+resources.db.params.driver_options.1002 = "SET NAMES UTF8;"
+;resources.db.params.profiler.enabled = true
+;resources.db.params.profiler.class = Zend_Db_Profiler_Firebug
+
+resources.mail.defaultFrom.email = john@example.com
+resources.mail.defaultFrom.name = "John Doe"
+resources.mail.defaultReplyTo.email = Jane@example.com
+resources.mail.defaultReplyTo.name = "Jane Doe"

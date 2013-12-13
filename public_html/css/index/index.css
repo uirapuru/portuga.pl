@@ -1,0 +1,137 @@
+div.table {
+    display: table
+}
+div.table > div {
+    display: table-row;
+}
+div.table > div > div {
+    display: table-cell
+}
+
+#moje-dane > div {
+    padding: 10px;
+}
+
+#editDataSubform .table {
+    margin-top: 20px;
+}
+#editDataSubform h1 {
+    text-decoration: underline
+}
+#editDataSubform .table > div > div {
+    padding: 5px
+}
+
+div.input input {
+    border: 1px solid #8aa5bf
+}
+
+#editFotoSubForm {
+    text-align: right
+}
+#editFotoSubForm img {
+    height: 120px;
+}
+
+#editFotoSubForm a {
+    font-size: 12px;
+    color: blue;
+}
+
+#obecnosci-table {
+    border: 1px solid #8aa5bf;
+    text-align: center;
+    width: 880px;
+    margin-top: 20px;
+}
+#obecnosci-table .header {
+    background-color: #ebeadb;
+}
+#obecnosci-table .header > div {
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 2px solid #cecbbc;
+    border-right: 1px solid #cecbbc;
+    padding: 10px 0;
+}
+#obecnosci-table > div > div {
+    border-bottom: 1px solid #cecbbc;
+    padding: 5px 0;
+}
+#obecnosci-table .date {
+    text-align: left;
+    padding-left: 150px;
+    font-size: 12px;
+    font-family: Times New Roman, serif;
+    text-transform: lowercase
+}
+
+#obecnosci-table div.name {
+    cursor: pointer
+}
+
+
+#changeFoto {
+    font-size: 14px;
+}
+
+#changeFoto ol {
+    list-style-type: disc;
+    padding-top: 10px;
+}
+
+#changeFoto li {
+    margin-bottom: 1em;
+    margin-left: 2em
+}
+
+.state span {
+    margin: 0 auto;
+    cursor: pointer
+}
+#addTrainingButton {
+    padding-top: 20px;
+}
+#addTraining-table {
+    display: table;
+    background-color: #ebeadb;
+    border: 1px solid #8aa5bf;
+    text-align: center;
+    width: 400px;
+    margin: 20px auto
+}
+#addTraining-table .header {
+    display: table-header-group;
+    background-color: #ebeadb;
+}
+#addTraining-table .header > div {
+    display: table-cell;
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 2px solid #cecbbc;
+    border-right: 1px solid #cecbbc;
+    padding: 10px 0;
+}
+
+#addTraining-table div.row {
+    display: table-row;
+}
+
+#addTraining-table div.row > div {
+    display: table-cell;
+    line-height: 50px;
+    border-bottom: 1px solid #cecbbc;
+
+}
+#addTraining div.userImage img {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+#addTrainingFormDate {
+    margin: 0 auto;
+}
+
+#showUser .userData > div {
+    margin-bottom: 10px;
+}

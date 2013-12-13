@@ -1,0 +1,156 @@
+<script>
+
+    $(function(){
+        $(".tabs").tabs();
+    });
+
+</script>
+
+<style>
+    div.table {
+        display: table
+    }
+    div.table > div {
+        display: table-row;
+    }
+    div.table > div > div {
+        display: table-cell
+    }
+
+    #my-data > div {
+        padding: 10px;
+    }
+
+    #editDataSubform .table {
+        margin-top: 20px;
+    }
+    #editDataSubform h1 {
+        text-decoration: underline
+    }
+    #editDataSubform .table > div > div {
+        padding: 5px
+    }
+
+    div.input input {
+        border: 1px solid #8aa5bf
+    }
+
+    #editFotoSubForm {
+        text-align: right
+    }
+    #editFotoSubForm img {
+        width: 130px;
+        height: 120px;
+    }
+
+    #editFotoSubForm a {
+        font-size: 12px;
+        color: blue;
+    }
+
+    #attendance-table {
+        border: 1px solid #8aa5bf;
+        text-align: center;
+        width: 880px;
+        margin-top: 20px;
+    }
+    #attendance-table .header {
+        background-color: #ebeadb;
+    }
+    #attendance-table .header > div {
+        font-size: 12px;
+        font-weight: bold;
+        border-bottom: 2px solid #cecbbc;
+        border-right: 1px solid #cecbbc;
+        padding: 10px 0;
+    }
+    #attendance-table > div > div {
+        border-bottom: 1px solid #cecbbc;
+        padding: 5px 0;
+    }
+    #attendance-table .date {
+        text-align: left;
+        padding-left: 150px;
+        font-size: 12px;
+        font-family: Times New Roman, serif;
+        text-transform: lowercase
+    }
+</style>
+
+<div class="tabs">
+    <ul>
+        <li><a href="#my-data">Moje dane</a></li>
+        <li><a href="#attendance">Obecności</a></li>
+        <li><a href="#users">Użytkownicy</a></li>
+        <li><a href="#clubs">Kluby</a></li>
+    </ul>
+    <div id="my-data">
+        <div id="editFotoSubForm" class="grid_3">
+            <img src="/images/foto.gif" width="120" height="130" alt="Foto" /><br />
+            <a href="/">Zmień zdjęcie</a>
+        </div>
+        <div id="editDataSubform" class="grid_7">
+            <div><h1>Dane kontaktowe</h1></div>
+            <div class="table">
+                    <div><div class="label"></div><div class="input"><input type="text" value="" name="" /></div></div>
+
+            </div>
+        </div>
+        <div id="printDocSubform" class="grid_3">
+            <button>Drukuj<br />deklarację</button>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <div id="attendance">
+        <div class="grid_4"><h1>Obecności za okres</h1></div>
+        <div class="grid_7" id="filtering">
+            <form action="<?php echo $this->url(array("filter" => true)); ?>" method="GET">
+                <select>
+                    <?php for ($a = date("Y"); $a >= 2000; $a--) : ?>
+                        <option value="<?php echo $a; ?>"><?php echo $a; ?></option>
+                    <?php endfor; ?>
+                    </select>
+                    <select>
+                        <option>wybierz miesiąc</option>
+                        <option value="1">styczeń</option>
+                        <option value="2">luty</option>
+                        <option value="3">marzec</option>
+                        <option value="4">kwiecień</option>
+                        <option value="5">maj</option>
+                        <option value="6">czerwiec</option>
+                        <option value="7">lipiec</option>
+                        <option value="8">sierpień</option>
+                        <option value="9">wrzesień</option>
+                        <option value="10">październik</option>
+                        <option value="11">listopad</option>
+                        <option value="12">grudzień</option>
+                    </select>
+                    <select>
+                        <option>użytkownik</option>
+                    <?php foreach ($this->users as $user) : ?>
+                            <option value="<?php echo $user["id"]; ?>"><?php echo $user["name"] . " " . $user["surname"]; ?></option>
+                    <?php endforeach; ?>
+                        </select>
+                    </form>
+                </div>
+                <div class="clear"></div>
+                <div id="attendance-table" class="grid_10 table">
+                    <div class="header"><div>Data</div><div>Obecność</div></div>
+            <?php foreach ($this->attendance as $obecnosc) : ?>
+                                <div><div class="date"><?php echo date("d.m.Y (l)", $obecnosc["data"]); ?></div><div class="state"><?php echo $obecnosc["present"]; ?></div></div>
+            <?php endforeach; ?>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_5 prefix_12">1 2 3 ... 10 11 12</div>
+
+    </div>
+    <div id="users">
+123
+
+    </div>
+    <div id="clubs">
+123
+        
+    </div>
+</div>

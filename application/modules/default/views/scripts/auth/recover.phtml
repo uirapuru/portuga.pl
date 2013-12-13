@@ -1,0 +1,12 @@
+<script language="javascript">
+    $(function(){
+        $("#pressMeArrow").click(function(e){
+            $("#newsletter form").submit();
+            e.preventDefault();
+        });
+    });
+</script>
+
+<?php if (isset($this->oRecoverForm)) : ?>
+    <?php echo $this->oRecoverForm; ?>
+<?php endif; ?>

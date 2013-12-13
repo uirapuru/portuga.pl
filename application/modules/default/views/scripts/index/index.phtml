@@ -1,0 +1,115 @@
+<?php
+
+/**
+ * @todo im wyższy rating tym wyższy stopień - <h1>, <h2> itd.
+ * @todo przenieść style do style.css
+ */
+
+if (isset($this->aGoogleTranslation) && is_array($this->aGoogleTranslation))
+{
+
+    if (is_array($this->translations))
+    {
+        array_unshift($this->translations, $this->aGoogleTranslation);
+    }
+    else
+    {
+        $this->translations = $this->aGoogleTranslation;
+    }
+
+    $sFirstPt = $this->aGoogleTranslation["pt"];
+    $sFirstPl = $this->aGoogleTranslation["pl"];
+} else {
+    $sFirstPt = "";
+    $sFirstPl = "";
+}
+?>
+
+<div id="content" class="container_16">
+    <div class="grid_8 prefix_4 suffix_4"style="text-align: center;">
+        <form action="<?php echo $this->url(); ?>" method="get">
+            <textarea name="word" id="word" rows="5" cols="30"><?php echo $this->word; ?></textarea>
+            <input type="submit" value="Przetłumacz" />
+        </form>
+    </div>
+
+    <?php if (!isset($this->word)): ?>
+        <div id="content" class="container_16">
+            <div class="grid_8 prefix_4 suffix_4" style=" margin-top: 50px">
+                Portek przetłumaczy Ci to, co potrzebujesz. Wpisz swoje słowo po polsku lub portugalsku. Pamiętaj,
+                że Portek dopiero się uczy i chętnie poznaje nowe słowa - jeśli znasz takie, którego tu nie ma,
+                to naucz Portka!
+            </div>
+        </div>
+    <?php else: ?>
+            <div class="grid_8 prefix_4 suffix_4 addNew" style="margin-top: 20px">
+                <p>Wybierz tłumaczenie najlepsze Twoim zdaniem - kliknij link <span style="color:#19b800">[OK!]</span>.</p>
+                <p>Kliknij portugalskie tłumaczenie - koleżanka Portka Ci je przeczyta :).</p>
+                <p>Portek się nie postarał? Daj mu dobry przykład i <a href="#" id="addNewTranslation">podaj właściwe tłumaczenie</a>.</p>
+                <div id="addWord" class="hidden">
+                    <form action="<?php echo $this->url(array("action" => "new")); ?>" method="post">
+                        <div class="table" style="margin-top: 15px; text-align: center;">
+                            <div class="row">
+                                <div class="cell">
+                                    <input name="wordPl" type="text" id="wordPl" value="<?php echo $sFirstPl; ?>" />
+                                </div>
+                                <div class="cell">
+                                    &nbsp;&rarr;&nbsp;
+                                </div>
+                                <div class="cell">
+                                    <input name="wordPt" type="text" id="wordPt" value="<?php echo $sFirstPt; ?>" />
+                                </div>
+                                <div class="cell" style="display: t">
+                                    <input type="submit" value="Zapisz" />
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php echo $this->captcha; ?>
+                    </form>
+
+                </div>
+            </div>
+            <div class="table grid_8 prefix_4 suffix_4" style="margin-top: 50px;">
+        <?php if (isset($this->translations) && is_array($this->translations) && count($this->translations) > 0 || isset($this->aGoogleTranslation)): ?>
+        <?php foreach ($this->translations as $aTranslation): ?>
+        <?php
+                    $sTranslation_Pl = preg_replace("/(.*)(" . $this->word . ")(.*)/iu", "\\1<b>\\2</b>\\3", $aTranslation["pl"]);
+                    $sTranslation_Pt = preg_replace("/(.*)(" . $this->word . ")(.*)/iu", "\\1<b>\\2</b>\\3", $aTranslation["pt"]);
+        ?>
+                    <div class="row">
+                        <div class="cell translation_pl"><?php echo $sTranslation_Pl; ?></div>
+                        <div class="cell">&rarr;</div>
+                        <div class="cell translation_pt"><a href="#" class="readTTS"><?php echo $sTranslation_Pt; ?></a></div>
+                        <div class="cell note"><a href="<?php
+                    echo $this->url(array(
+                        "action" => "rate",
+                        "id" => base64_encode(serialize($aTranslation))
+                    ));
+        ?>" class="ok">[&nbsp;OK!&nbsp;]</a>
+                    <?php if(isset($aTranslation["note"]) && intval($aTranslation["note"]) > 0): ?>
+                            <small style="font-size: 10px; line-height: 20px;"><?php echo $aTranslation["note"]; ?> głosów</small>
+                    <?php endif; ?>
+                        </div>
+        </div>
+        <?php endforeach; ?>
+        <?php endif; ?>
+                </div>
+<?php endif; ?>
+
+            </div>
+<object
+    classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+    width="0" height="0"
+    id="niftyPlayer1" align="">
+    <param name="movie" value="/swf/niftyplayer.swf">
+    <param name="quality" value="high">
+    <param name="bgcolor" value="#FFFFFF">
+    <embed src="/swf/niftyplayer.swf" quality="high"
+           bgcolor="#FFFFFF" width="0" height="0"
+           name="niftyPlayer1" align=""
+           type="application/x-shockwave-flash"
+           pluginspage="http://www.macromedia.com/go/getflashplayer">
+    </embed>
+</object>

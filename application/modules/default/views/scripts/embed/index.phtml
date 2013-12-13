@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Portuga.pl - słownik polsko-portugalski, portugalsko-polski</title>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+        <style type="text/css">
+            .table {
+                display: table
+            }
+            .row {
+                display: table-row
+            }
+            .cell {
+                display: table-cell;
+                padding-right: 20px;
+            }
+            .translation_pl, .translation_pt, .note {
+                font-size: 14px;
+                height: 20px;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+            }
+
+            .note {
+                text-align: right;
+            }
+
+            .note a {
+                text-decoration: none;
+            }
+            .ok {
+                color: #cccccc
+            }
+            .ok:hover {
+                color: #19b800
+            }
+        </style>
+
+
+        <script type="text/javascript" src="/js/script.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $("form#translate").submit(function(e){
+                    $.get("http://portuga.pl/embed/translate/q/"+$("form#translate input[name=word]").val(),function(data){
+                        $("#answer").html(data);
+                    });
+                    e.preventDefault();
+                });
+
+                $(".ok").live("click",function(e) {
+                    $.get($(this).attr("href"));
+                    e.preventDefault();
+                });
+            });
+        </script>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-6294686-6']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </head>
+    <body>
+
+        <a href="<?php echo $this->baseUrl(); ?>" target="_blank"><img src="/images/portek.jpg" alt="Portuga.pl - Uirkowy tłumacz polsko-portugalski ;)" style="float: left; margin: 10px; border: 0"/></a>
+        <div>
+            <form action="" method="get" id="translate">
+                <input name="word" type="text" id="word" value="Podaj tłumaczenie" onClick="this.value = ''" />
+                <input type="submit" value="Tłumacz" name="translate" />
+            </form>
+            <div id="answer"></div>
+        </div>
+
+
+        <object
+            classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+            width="0" height="0"
+            id="niftyPlayer1" align="">
+            <param name="movie" value="/swf/niftyplayer.swf">
+            <param name="quality" value="high">
+            <param name="bgcolor" value="#FFFFFF">
+            <embed src="/swf/niftyplayer.swf" quality="high"
+                   bgcolor="#FFFFFF" width="0" height="0"
+                   name="niftyPlayer1" align=""
+                   type="application/x-shockwave-flash"
+                   pluginspage="http://www.macromedia.com/go/getflashplayer">
+            </embed>
+        </object>
+    </body>
+</html>
+

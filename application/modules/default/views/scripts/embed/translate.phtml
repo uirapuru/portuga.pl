@@ -1,0 +1,53 @@
+<?php
+/**
+ * @todo im wyższy rating tym wyższy stopień - <h1>, <h2> itd.
+ * @todo przenieść style do style.css
+ */
+if (isset($this->aGoogleTranslation) && is_array($this->aGoogleTranslation))
+{
+
+    if (is_array($this->translations))
+    {
+        array_unshift($this->translations, $this->aGoogleTranslation);
+    }
+    else
+    {
+        $this->translations = $this->aGoogleTranslation;
+    }
+
+    $sFirstPt = $this->aGoogleTranslation["pt"];
+    $sFirstPl = $this->aGoogleTranslation["pl"];
+}
+else
+{
+    $sFirstPt = "";
+    $sFirstPl = "";
+}
+?>
+
+<div class="table" style="margin-top: 20px;">
+    <?php if (isset($this->translations) && is_array($this->translations) && count($this->translations) > 0 || isset($this->aGoogleTranslation)): ?>
+    <?php foreach ($this->translations as $aTranslation): ?>
+    <?php
+            $sTranslation_Pl = preg_replace("/(.*)(" . $this->word . ")(.*)/iu", "\\1<b>\\2</b>\\3", $aTranslation["pl"]);
+            $sTranslation_Pt = preg_replace("/(.*)(" . $this->word . ")(.*)/iu", "\\1<b>\\2</b>\\3", $aTranslation["pt"]);
+    ?>
+            <div class="row">
+                <div class="cell translation_pl"><?php echo $sTranslation_Pl; ?></div>
+                <div class="cell">&rarr;</div>
+                <div class="cell translation_pt"><a href="#" class="readTTS"><?php echo $sTranslation_Pt; ?></a></div>
+                <div class="cell note"><a href="<?php
+            echo $this->url(array(
+                "action" => "rate",
+                "controller" => "index",
+                "id" => base64_encode(serialize($aTranslation))
+            ));
+    ?>" class="ok">[&nbsp;OK!&nbsp;]</a>
+                                  <?php if ($aTranslation["note"] > 0): ?>
+                <small style="font-size: 10px; line-height: 20px;"><?php echo $aTranslation["note"]; ?> głosów</small>
+            <?php endif; ?>
+                                  </div>
+                              </div>
+    <?php endforeach; ?>
+    <?php endif; ?>
+</div>
